@@ -27,7 +27,7 @@
         <p>{{ratingInsta}}</p>
       </div>
       <v-spacer></v-spacer>
-      <v-btn rounded="pill" flat color="light-blue" text-color="white" @click="dialog=true">Get Quote</v-btn>
+      <v-btn height="7vh" width="10vw" rounded="pill" flat color="light-blue" text-color="white" @click="dialog=true">Get Quote</v-btn>
     </div>
   </div>
   <Popup v-model="dialog" @closeDialog="dialog=false">
@@ -51,7 +51,7 @@
           <v-checkbox v-model="urgent" :model-value="false" label="Is this an urgent matter?" density="compact" class="mt-4"></v-checkbox>
           <v-checkbox v-model="alright" :model-value="false" label="Are you alright?" density="compact"></v-checkbox>
           <p class="text-grey">Our representative will talk to you soon!</p>
-          <v-btn class="align-self-center my-6" rounded="pill" color="light-blue" flat text-color="white" @click.prevent="">Get Quote</v-btn>
+          <v-btn height="8vh" width="10vw" class="align-self-center my-6" rounded="pill" color="light-blue" flat text-color="white" @click.prevent="">Get Quote</v-btn>
         </v-form>
       </div>
     </div>

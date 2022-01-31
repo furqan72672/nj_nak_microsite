@@ -7,23 +7,23 @@
       <v-icon @click="openPopup" v-for="i in 5" size="7vh" :color="color">mdi-star</v-icon>
     </div>
   </div>
-  <Popup v-model="popup" @closeDialog="popup=false">
-    <div class="ma-4 d-flex flex-column align-center">
+  <Popup v-model="localPopup" @closeDialog="localPopup=false" width="30vw">
+    <div class="mx-4 mb-8 d-flex flex-column align-center">
       <v-card-title>Let people know what you think about {{name}}</v-card-title>
       <p>Leave a review on following platforms</p>
-      <v-card width="90%" class="mt-4">
-        <v-list-item class="align-baseline">
-          <v-list-item-avatar><v-icon color="blue">mdi-facebook</v-icon></v-list-item-avatar>
-          <v-list-item-title>Facebook</v-list-item-title>
-        </v-list-item>
+      <v-card :elevation="elevation1" width="90%" height="8vh" class="mt-4 px-4 d-flex align-center" @mouseover="cardHover1" @mouseleave="hoverLeave1">
+        <v-icon color="blue">mdi-facebook</v-icon>
+        <v-spacer></v-spacer>
+        <v-list-item-title>Facebook</v-list-item-title>
+        <v-spacer></v-spacer>
+        <v-icon :color="hover1?'blue':'black'">mdi-chevron-right</v-icon>
       </v-card>
-      <v-card width="90%" class="mt-4 ">
-        <v-list-item class="align-baseline">
-          <v-list-item-avatar><v-icon color="red">mdi-google</v-icon></v-list-item-avatar>
-          <v-list-item-title>Google</v-list-item-title>
-          <v-spacer></v-spacer>
-          <v-icon>mdi-chevron-right</v-icon>
-        </v-list-item>
+      <v-card :elevation="elevation2" width="90%" height="8vh" class="mt-4 px-4 d-flex align-center" @mouseover="cardHover2" @mouseleave="hoverLeave2">
+        <v-icon color="red" >mdi-google</v-icon>
+        <v-spacer></v-spacer>
+        <v-list-item-title>Google</v-list-item-title>
+        <v-spacer></v-spacer>
+        <v-icon :color="hover2?'blue':'black'">mdi-chevron-right</v-icon>
       </v-card>
     </div>
   </Popup>
@@ -36,14 +36,27 @@ import Popup from "./Popup";
 export default {
   name:'LeaveReview',
   components: {Popup},
-  setup(){
+  props:{
+    popup:{
+      type:Boolean,
+    },
+    id:{
+      type:String,
+    }
+  },
+  setup(props){
     const color=ref("grey")
-    const popup=ref(true)
     const name=ref("NAK")
-
-
+    const hover1=ref(false)
+    const hover2=ref(false)
+    const elevation1=ref(1)
+    const elevation2=ref(1)
+    const localPopup=ref(props.popup)
+    if(props.id.length>0){
+      console.log(props.id);
+    }
     function openPopup(){
-      popup.value=true
+      localPopup.value=true;
     }
     function changeColor(){
       color.value="yellow";
@@ -51,7 +64,30 @@ export default {
     function changeColorBack(){
       color.value="grey";
     }
-    return {color,changeColor,changeColorBack,openPopup,popup,name}
+    function cardHover1(){
+      elevation1.value=5;
+      hover1.value=true;
+    }
+    function hoverLeave1(){
+      elevation1.value=1;
+      hover1.value=false;
+    }
+    function cardHover2(){
+      elevation2.value=5;
+      hover2.value=true;
+    }
+    function hoverLeave2(){
+      elevation2.value=1;
+      hover2.value=false;
+    }
+    return {color,changeColor,changeColorBack,openPopup,name,hover1,hover2,elevation1,cardHover1,hoverLeave1,elevation2,cardHover2,hoverLeave2,localPopup}
   }
 }
 </script>
+
+<!--<style>-->
+<!--.hover-card{-->
+<!--  box-shadow: blue;-->
+
+<!--}-->
+<!--</style>-->

@@ -1,6 +1,6 @@
 <template>
-  <v-overlay :persistent=persistent class="d-flex justify-center" :contained=true>
-    <v-card rounded max-height="90vh" width="35vw" class="pop">
+  <v-overlay :persistent=persistent class="d-flex justify-center align-center">
+    <v-card rounded max-height="90vh" :width="width" class="pop">
       <div class="d-flex mt-2">
         <v-spacer></v-spacer>
         <v-btn icon size="xx-small" flat @click="$emit('closeDialog')" class="mr-2"><v-icon size="x-small">mdi-close</v-icon></v-btn>
@@ -22,6 +22,10 @@ export default {
     persistent:{
       type:Boolean,
       default: false
+    },
+    width:{
+      type:String,
+      default:"35vw"
     }
   },
   setup(props){
