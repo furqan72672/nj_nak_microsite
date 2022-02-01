@@ -1,12 +1,12 @@
 <template>
   <div class="my-16">
-    <Header/>
-    <EarnedReviews/>
-    <LeaveReview :popup="leaveReviewPopup" :id="id"/>
-    <Reviews/>
-    <GetConnected/>
-    <BusinessOwner/>
-    <CheckIn :popup="checkInPopup"/>
+    <Header :company="company" :rating="rating"/>
+    <EarnedReviews :company="company" :rating="rating"/>
+    <LeaveReview :popup="leaveReviewPopup" :id="id" :company="company"/>
+    <Reviews :company="company"/>
+    <GetConnected :company="company"/>
+    <BusinessOwner />
+    <CheckIn :popup="checkInPopup" />
   </div>
 </template>
 
@@ -18,8 +18,8 @@ import Reviews from '../components/Reviews';
 import GetConnected from '../components/GetConnected';
 import BusinessOwner from '../components/BusinessOwner';
 import CheckIn from '../components/CheckIn';
-// import {ref} from "vue";
-// import router from "../router";
+import {CompanyService} from "../services/companyService";
+import {reactive} from "vue";
 
 export default {
   name: 'Home',
@@ -50,14 +50,15 @@ export default {
     BusinessOwner,
     CheckIn
   },
-
-  setup(props){
-
-    // console.log(props.id)
-    // const localId=ref("");
-    // if(props.id){
-    //   localId.value=route.query.id
-    // }
-  }
+  async setup(){
+    const service=new CompanyService()
+    const persons=await service.getPersons();
+    const _company=await service.getCompany(persons[0]._id)
+    const company=reactive(_company[0])
+    // console.log(company)
+    const rating=reactive(await service.getRating(company._id))
+    console.log(rating)
+    return {company,rating}
+  },
 };
 </script>

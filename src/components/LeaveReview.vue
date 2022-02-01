@@ -2,8 +2,6 @@
   <div class="d-flex flex-column justify-center align-center mt-10">
     <h2 style="font-weight: bold">Leave us a review</h2>
     <div class="mb-4" @mouseover="changeColor" @mouseleave="changeColorBack">
-
-      <!--i will get rating.....print stars with rating.....than minus the remaining rating and loop empty stars-->
       <v-icon @click="openPopup" v-for="i in 5" size="7vh" :color="color">mdi-star</v-icon>
     </div>
   </div>
@@ -42,6 +40,10 @@ export default {
     },
     id:{
       type:String,
+    },
+    company:{
+      type:Object,
+      required:true
     }
   },
   setup(props){

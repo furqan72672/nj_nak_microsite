@@ -37,6 +37,12 @@ import {ref} from "vue";
 
 export default {
   name:'Reviews',
+  props:{
+    company:{
+      type:Object,
+      required:true
+    }
+  },
   setup(){
     const name=ref("Ryan V.");
     const time=ref("6 days ago");
