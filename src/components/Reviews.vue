@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex mt-10">
     <v-spacer></v-spacer>
-    <v-card class="d-flex" width="55%" elevation="3">
+    <v-card class="d-flex" width="54%" elevation="3">
       <div class="d-flex flex-column ma-10">
         <div class="d-flex">
           <v-avatar color="light-blue" class="mr-3">RV</v-avatar>

@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import {onMounted, reactive, ref, toRefs} from "vue";
+import { ref} from "vue";
 // import Popup from "@/components/Popup";
 import ButtonWithPopup from "@/components/ButtonWithPopup";
 
@@ -56,11 +56,11 @@ export default {
     }
   },
   async setup(props){
-    const rooster=ref(props.rating.rooster?props.rating.rooster.toFixed(1):null)
-    const bbb=ref(props.rating.bbb?props.rating.bbb.toFixed(1):null)
-    const google=ref(props.rating.google?props.rating.google.toFixed(1):null)
-    const facebook=ref(props.rating.facebook?props.rating.facebook.toFixed(1):null)
-    const average_rating=ref(props.rating.average_rating?props.rating.average_rating.toFixed(1):null)
+    const rooster=ref(props.rating.rooster?parseFloat(props.rating.rooster.toFixed(1)):null)
+    const bbb=ref(props.rating.bbb?parseFloat(props.rating.bbb.toFixed(1)):null)
+    const google=ref(props.rating.google?parseFloat(props.rating.google.toFixed(1)):null)
+    const facebook=ref(props.rating.facebook?parseFloat(props.rating.facebook.toFixed(1)):null)
+    const average_rating=ref(props.rating.average_rating?parseFloat(props.rating.average_rating.toFixed(1)):null)
 
     return{rooster,bbb,google,facebook,average_rating}
   },

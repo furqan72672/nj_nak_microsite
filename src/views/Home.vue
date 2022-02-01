@@ -4,6 +4,7 @@
     <EarnedReviews :company="company" :rating="rating"/>
     <LeaveReview :popup="leaveReviewPopup" :id="id" :company="company"/>
     <Reviews :company="company"/>
+    <v-divider thickness="10" class="mt-10"></v-divider>
     <GetConnected :company="company"/>
     <BusinessOwner />
     <CheckIn :popup="checkInPopup" />
@@ -55,9 +56,8 @@ export default {
     const persons=await service.getPersons();
     const _company=await service.getCompany(persons[0]._id)
     const company=reactive(_company[0])
-    // console.log(company)
     const rating=reactive(await service.getRating(company._id))
-    console.log(rating)
+
     return {company,rating}
   },
 };

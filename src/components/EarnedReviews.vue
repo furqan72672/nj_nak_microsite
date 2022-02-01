@@ -37,7 +37,8 @@ export default {
   setup(props){
     const {name}=props.company
     const{total_reviews}=props.rating
-    const average_rating=ref(props.rating.average_rating?props.rating.average_rating.toFixed(1):null)
+    const average_rating=ref(props.rating.average_rating?parseFloat(props.rating.average_rating.toFixed(1)):null)
+
 
     return{name,total_reviews,average_rating}
   }
